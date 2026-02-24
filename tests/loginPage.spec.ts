@@ -24,34 +24,36 @@ test.beforeAll(async({}) =>{
 
   });
 
-  test('Usuario se logea exitosamente a la aplicación', async ({ page }) => {
+  test('Usuario se logea exitosamente a la aplicación', { tag: ['@positive', '@smoke'] }, async ({ page }) => {
     await loginPage.login(username, password);
     await expect(page).toHaveURL('/secure');
     await expect(dashboardSecure.sucessMessage).toContainText('You logged into a secure area!');
     
   });
 
-  test('Usuario ya autenticado debería poder deslogearse', async ({ page }) => {
+  test('Usuario ya autenticado debería poder deslogearse',{ tag: ['@positive', '@smoke'] }, async ({ page }) => {
     await loginPage.login(username, password);
     await dashboardSecure.logOutButtonClick();
     await expect(page).toHaveURL('/login');
     await expect(loginPage.authenticationMessage).toContainText('You logged out of the secure area! ');
     }); 
 
-    test('No se debería poder ingresar a la aplicación ingresando un username invalido por uso de mayúsculas/minúsculas (case sensitive)', async ({page}) =>{
+    test('No se debería poder ingresar a la aplicación ingresando un username invalido por uso de mayúsculas/minúsculas (case sensitive)',{ tag: ['@negative', '@smoke'] }, async ({page}) =>{
       const invalidUsername = process.env.INVALID_USERNAME!;
       await loginPage.login(invalidUsername, password);
       await expect(loginPage.authenticationMessage).toContainText('Your username is invalid!');
     })
 
-    test('No se debería poder ingresar a la aplicación ingresando un password invalido por uso de mayúsculas/minúsculas (case sensitive)', async ({page}) =>{
-      const invalidPassword = process.env.INVALID_PASSWORD;
-      await loginPage.login(username, invalidPassword!);
+    test('No se debería poder ingresar a la aplicación ingresando un password invalido por uso de mayúsculas/minúsculas (case sensitive)',{ tag: ['@negative', '@smoke'] }, async ({page}) =>{
+      const invalidPassword = process.env.INVALID_PASSWORD!;
+      await loginPage.login(username, invalidPassword);
       await expect(loginPage.authenticationMessage).toContainText('Your password is invalid!');
     })
 
-    test('No se debería poder ingresar a la aplicación si el usuario deja el campo password y username vacio', async ({page}) =>{
-      await loginPage.login("", "");
+    test('## TC-6 - No se debería poder ingresar a la aplicación si el usuario ingresa username y password inválidos',{ tag: ['@negative', '@smoke'] }, async ({page}) =>{
+      const invalidUsername = process.env.INVALID_USERNAME!;
+      const invalidPassword = process.env.INVALID_PASSWORD!;
+      await loginPage.login(invalidUsername, invalidPassword)
       await expect(loginPage.authenticationMessage).toContainText('Your username is invalid!');
     })
 });

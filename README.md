@@ -50,9 +50,27 @@ Desde la terminal ingresar:
 Desde la terminal ingresar:
 **npm install dotenv**
 
-## Ejecutar la automatización
+## Como ejecutar los test
 
+Aclaración: Se agregaron *tags* a los casos de prueba automatizados.  
+Esto permite ejecutar únicamente subconjuntos específicos de tests (por ejemplo, casos negativos, positivos, smoke, sanity o regresión, etc) según la necesidad.
+
+## Ejecutar todos los test del proyecto
 Desde la terminal:
-**npx playwright test**
 
-(En caso de que se requiera ejecutar los test)
+**npx playwright test** 
+
+## Ejecutar solo los test con el tag smoke
+Desde la terminal:
+
+**npx playwright test --grep @smoke**
+
+## Ejecutar solo los casos positivos con el tag positive
+Desde la terminal:
+
+**npx playwright test --grep @positive**
+
+## Ejecutar solo casos negativos con el tag negative
+Desde la terminal:
+
+**npx playwright test --grep @negative**
