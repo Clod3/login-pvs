@@ -75,5 +75,5 @@ Desde la terminal:
 
 **npx playwright test --grep @negative**
 
-##Reportes
+## Reportes
 Para la visualización de la misma como se aclaró anteriormente tenemos un reporte en formato JUnit, y también el reporte por default que nos brinda playwright, que en cada ejecución se puede visualizar localmente en /playwright-report
