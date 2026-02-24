@@ -18,6 +18,8 @@ Typescript lo elegí por ser un lenguaje de tipo tipado, esto reduce la cantidad
 
 Utilicé npm como gestor de dependencias ya que viene incluido con node.js y permite administrar de manera simple las librerias del proyecto, facilita la instalación de las mismas, el control de versiones y la ejecución de scripts
 
+Agregué un reporter JUnit en formato JUnit(results.xml) para facilitar la trazabilidad de los test en pipelines de CI/CD y permitir la integración con herramientas de monitoreo y reporting.
+
 # Como levantar el proyecto
 
 
@@ -48,7 +50,9 @@ Desde la terminal ingresar:
 Desde la terminal ingresar:
 **npm install dotenv**
 
-## Comprobar que los test se pueden ejecutar
+## Ejecutar la automatización
 
 Desde la terminal:
 **npx playwright test**
+
+(En caso de que se requiera ejecutar los test)
